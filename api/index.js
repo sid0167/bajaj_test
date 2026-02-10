@@ -80,18 +80,19 @@ app.post("/bfhl", async (req, res) => {
         if (typeof body[key] !== "string") throw "Invalid AI input";
 
         // 🔹 Gemini API
-        const response = await axios.post(
-         "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent",
+       const response = await axios.post(
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent",
+  {
+    contents: [{ parts: [{ text: body[key] }] }]
+  },
+  {
+    params: { key: process.env.GEMINI_API_KEY },
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }
+);
 
-       
-
-          {
-            contents: [{ parts: [{ text: body[key] }] }]
-          },
-          {
-            params: { key: process.env.GEMINI_API_KEY }
-          }
-        );
 
        data =
   response.data.candidates?.[0]?.content?.parts?.[0]?.text
