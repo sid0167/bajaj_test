@@ -32,6 +32,17 @@ const hcf = (arr) => arr.reduce((a, b) => gcd(a, b));
 const lcm = (arr) =>
   arr.reduce((a, b) => (a * b) / gcd(a, b));
 
+app.get("/", (req, res) => {
+  res.json({
+    message: "BFHL API is running",
+    endpoints: {
+      health: "/health",
+      bfhl: "/bfhl"
+    }
+  });
+});
+
+
 // ---------- Routes ----------
 app.get("/health", (req, res) => {
   res.status(200).json({
