@@ -98,7 +98,8 @@ app.post("/bfhl", async (req, res) => {
       },
       {
         params: { key: process.env.GEMINI_API_KEY },
-        headers: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" },
+        timeout: 5000 // 5 seconds timeout
       }
     );
 
